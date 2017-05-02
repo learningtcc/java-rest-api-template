@@ -1,0 +1,51 @@
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'application'
+
+apply plugin: 'java'
+    
+compileJava.options.encoding = 'UTF-8'
+    
+sourceCompatibility = 1.8
+
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+List apachecommons = [
+	"commons-io:commons-io:2.1",
+	"commons-lang:commons-lang:2.6",
+	"commons-collections:commons-collections:3.2.1"
+]
+
+    List logging = [
+        "log4j:log4j:1.2.+",
+        "org.slf4j:slf4j-api:1.+",
+        "org.slf4j:slf4j-log4j12:1.+"
+    ]
+
+	
+dependencies {
+	compile apachecommons
+    
+    compile logging
+    
+	// camel libs
+	compile 'org.apache.camel:camel-core:2.18.+'
+	compile 'org.apache.camel:camel-spring:2.18.+'
+	compile 'org.apache.camel:camel-netty4-http:2.18.+'
+	compile 'org.apache.camel:camel-jackson:2.18.+'
+	
+	compile 'com.newrelic.agent.java:newrelic-api:3.37.0'
+}
+
+task copyDeps(type: Copy) {
+    into "${projectDir}/build/deps"
+    from configurations.runtime
+}
+
+applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8", "-javaagent:newrelic/newrelic.jar"]
+mainClassName = "tpm.Boot"
+
