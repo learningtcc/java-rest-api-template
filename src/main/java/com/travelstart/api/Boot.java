@@ -1,4 +1,4 @@
-package tpm;
+package com.travelstart.api;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -6,7 +6,7 @@ import javax.annotation.PreDestroy;
 import org.apache.camel.CamelContext;
 import org.apache.camel.component.netty4.http.DefaultNettySharedHttpServer;
 import org.apache.camel.component.netty4.http.NettySharedHttpServerBootstrapConfiguration;
-import org.apache.camel.spring.SpringCamelContext;
+import org.apache.camel.spring.CamelContextFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("tpm")
+@ComponentScan("com.travelstart.api")
 public class Boot {
     private Logger log = LoggerFactory.getLogger(Boot.class);
 
@@ -26,6 +26,8 @@ public class Boot {
     @PostConstruct
     public void init() {
         log.info("start.");
+        context.setMessageHistory(false); // true on non-prod
+        context.setStreamCaching(true);
 
     }
 
@@ -54,19 +56,16 @@ public class Boot {
     }
 
     @Bean
-    public CamelContext buildCamelContext() {
-        final SpringCamelContext camelContext = new SpringCamelContext();
-        camelContext.setMessageHistory(false); // true on non-prod
-        camelContext.setStreamCaching(true);
-        //camelContext.disableJMX();
-        return camelContext;
+    CamelContextFactoryBean camelContextFactory() {
+        final CamelContextFactoryBean context = new CamelContextFactoryBean();
+        context.setId("camel");
+        return context;
     }
+
+
 
     public static void main(String[] args) throws InterruptedException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Boot.class);
-
-        //        final ClassPathXmlApplicationContext context =
-        //                new ClassPathXmlApplicationContext(new String[] {"classpath:spring-context.xml"});
         context.registerShutdownHook();
         context.start();
     }

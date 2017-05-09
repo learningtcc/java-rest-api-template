@@ -47,5 +47,5 @@ task copyDeps(type: Copy) {
 }
 
 applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8", "-javaagent:newrelic/newrelic.jar"]
-mainClassName = "tpm.Boot"
+mainClassName = "com.travelstart.api.Boot"
 

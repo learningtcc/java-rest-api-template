@@ -1,4 +1,4 @@
-package tpm;
+package com.travelstart.api.model;
 
 public class Message {
 	private String msg;
