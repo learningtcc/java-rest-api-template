@@ -15,6 +15,7 @@ public class NewRelicHandler {
 
     @Handler
     public void handler(@Header("CamelHttpUri") String uri) {
+        log.info("URI:{}", uri);
         if (StringUtils.isNotBlank(uri)) {
             NewRelic.setTransactionName(null, uri);
         }

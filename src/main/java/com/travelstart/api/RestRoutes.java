@@ -20,32 +20,28 @@ public class RestRoutes extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         // @formatter:off
-        
+
         interceptFrom("*")
             .to("log:headers?level=INFO&showHeaders=true&multiline=true")
             .bean(newRelicHandler)
         ;
-        
-        restConfiguration("netty4-http")
-            .bindingMode(RestBindingMode.json)
-            .endpointProperty("nettySharedHttpServer", "#sharedNettyHttpServer")
-        ;
-        
-        
-        rest().path("/say")
-            .get("/hello")
-            .produces("application/json")
-            .route().bean(sayHandler)
-        ;
-        
+
+
         rest().path("/api")
             .get("/ping.json")
             .produces("application/json")
             .bindingMode(RestBindingMode.off)
             .route().transform(constant("{\"ok\":true}"))
+            .setId("pingRoute")
         ;
         
-        
+        rest().path("/say")
+            .get("/hello")
+            .produces("application/json")
+            .route().bean(sayHandler)
+            .setId("sayRoute");
+        ;
+
         // @formatter:on   
     }
     

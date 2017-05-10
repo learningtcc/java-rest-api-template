@@ -3,13 +3,11 @@ package com.travelstart.api;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.component.netty4.http.DefaultNettySharedHttpServer;
 import org.apache.camel.component.netty4.http.NettySharedHttpServerBootstrapConfiguration;
 import org.apache.camel.spring.CamelContextFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,15 +18,9 @@ import org.springframework.context.annotation.Configuration;
 public class Boot {
     private Logger log = LoggerFactory.getLogger(Boot.class);
 
-    @Autowired
-    private CamelContext context;
-
     @PostConstruct
     public void init() {
         log.info("start.");
-        context.setMessageHistory(false); // true on non-prod
-        context.setStreamCaching(true);
-
     }
 
     @PreDestroy
@@ -42,7 +34,7 @@ public class Boot {
         config.setHost("0.0.0.0");
         config.setPort(8890);
         config.setCompression(true);
-        config.setWorkerCount(32);
+        config.setWorkerCount(Runtime.getRuntime().availableProcessors() * 2);
         return config;
     }
 
@@ -59,6 +51,8 @@ public class Boot {
     CamelContextFactoryBean camelContextFactory() {
         final CamelContextFactoryBean context = new CamelContextFactoryBean();
         context.setId("camel");
+        context.setMessageHistory(Boolean.FALSE.toString());
+        context.setStreamCache(Boolean.TRUE.toString());
         return context;
     }
 

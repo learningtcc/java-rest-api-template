@@ -19,8 +19,7 @@ public class SayHandler {
     public Object handle(@Body Object body, @Header("q") String q) throws InterruptedException {
         Message m = new Message();
         m.setMsg("hello " + q);
-        log.info("hello:{}", q);
-        Thread.sleep(100);
+        log.info("hello: \"{}\"", q);
         return m;
     }
 }
