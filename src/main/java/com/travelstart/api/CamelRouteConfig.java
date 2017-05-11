@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CamelAutoConfiguration {
-    private Logger log = LoggerFactory.getLogger(CamelAutoConfiguration.class);
+public class CamelRouteConfig {
+    private Logger log = LoggerFactory.getLogger(CamelRouteConfig.class);
 
     @Autowired(required = false)
     private RoutesBuilder[] routesBuilders;
