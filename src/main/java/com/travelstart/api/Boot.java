@@ -56,8 +56,6 @@ public class Boot {
         return context;
     }
 
-
-
     public static void main(String[] args) throws InterruptedException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Boot.class);
         context.registerShutdownHook();

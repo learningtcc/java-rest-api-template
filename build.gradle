@@ -1,5 +1,4 @@
 apply plugin: 'eclipse'
-apply plugin: 'eclipse-wtp'
 apply plugin: 'application'
 
 apply plugin: 'java'
@@ -16,6 +15,7 @@ repositories {
 
 List apachecommons = [
 	"commons-lang:commons-lang:2.6",
+    "commons-io:commons-io:2.5"
 ]
 
 List logging = [
@@ -45,6 +45,7 @@ task copyDeps(type: Copy) {
 }
 
 applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8"]
-// applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8", "-javaagent:newrelic/newrelic.jar"]
+// to enable newrelic: applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8", "-javaagent:newrelic/newrelic.jar"]
+
 mainClassName = "com.travelstart.api.Boot"
 
