@@ -13,10 +13,9 @@ Externally | `gradle installDist`, start script in `build/install/java-rest-temp
 Docker | TODO | TODO
 
 ## Things to know
-
-### REST Routes are defined in `com.travelstart.api.RestRoutes`
-### Errors are handled in `com.travelstart.api.handler.ErrorHandler`
-### Request/Response content handler for logging `com.travelstart.api.handler.LoggingHandler`
-### Runs on port 8890 - see `com.travelstart.api.Boot`
-### Uses CPU Core * 2 workers - see `com.travelstart.api.Boot`
+- REST Routes are defined in `com.travelstart.api.RestRoutes`
+- Errors are handled in `com.travelstart.api.handler.ErrorHandler`
+- Request/Response content handler for logging `com.travelstart.api.handler.LoggingHandler`
+- Runs on port 8890 - see `com.travelstart.api.Boot`
+- Uses CPU Core * 2 workers - see `com.travelstart.api.Boot`
 
