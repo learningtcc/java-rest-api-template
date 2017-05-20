@@ -1,21 +1,20 @@
-# java-rest-template
-Java REST API template with Camel+Netty (+NewRelic integration)
+REST API Template (Java+Netty+Camel)
+=====================================
 
-`gradle run`
+## How do run it?
 
-`gradle run --debug-jvm`
+Mode | How | How in debug?
+--- | --- | ---
+Development | `gradle run` | `gradle run --debug-jvm`
+Development | run `com.travelstart.api.Boot` from IDE | run `com.travelstart.api.Boot` in debug mode in IDE
+Externally | `gradle installDist`, start script in `build/install/java-rest-template/bin/java-rest-template` | ? 
+Docker | TODO | TODO
 
+## Things to know
 
-run `com.travelstart.api.Boot` as-is from IDE (works in debug mode too)
-
-
-port 8890 default
-uses CPU * 2 workers
-
-standalone:
-
-`gradle installDist` and then run `build/install/java-rest-template/bin/java-rest-template` 
-
-
-docker: Dockerfile included
+### REST Routes are defined in `com.travelstart.api.RestRoutes`
+### Errors are handled in `com.travelstart.api.handler.ErrorHandler`
+### Request/Response content handler for logging `com.travelstart.api.handler.LoggingHandler`
+### Runs on port 8890 - see `com.travelstart.api.Boot`
+### Uses CPU Core * 2 workers - see `com.travelstart.api.Boot`
 
