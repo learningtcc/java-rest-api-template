@@ -3,6 +3,8 @@ REST API Template (Java+Netty+Camel)
 
 ## How do run it?
 
+You will need [gradle](https://gradle.org/) run and build the template. 
+
 Mode | How | How in debug?
 --- | --- | ---
 Development | `gradle run` | `gradle run --debug-jvm`
