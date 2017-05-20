@@ -7,8 +7,8 @@ You will need [gradle](https://gradle.org/) run and build the template.
 
 Mode | How | How in debug?
 --- | --- | ---
-Development | `gradle run` | `gradle run --debug-jvm`
-Development | run `com.travelstart.api.Boot` from IDE | run `com.travelstart.api.Boot` in debug mode in IDE
+Development option 1| `gradle run` | `gradle run --debug-jvm`
+Development option 2| run `com.travelstart.api.Boot` from IDE | run `com.travelstart.api.Boot` in debug mode in IDE
 Externally | `gradle installDist`, start script in `build/install/java-rest-template/bin/java-rest-template` | ? 
 Docker | TODO | TODO
 
