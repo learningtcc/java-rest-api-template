@@ -31,12 +31,12 @@ dependencies {
     compile logging
     
 	// camel libs
-	compile 'org.apache.camel:camel-core:2.18.+'
-	compile 'org.apache.camel:camel-spring:2.18.+'
-	compile 'org.apache.camel:camel-netty4-http:2.18.+'
-	compile 'org.apache.camel:camel-jackson:2.18.+'
+	compile 'org.apache.camel:camel-core:2.19.+'
+	compile 'org.apache.camel:camel-spring:2.19.+'
+	compile 'org.apache.camel:camel-netty4-http:2.19.+'
+	compile 'org.apache.camel:camel-jackson:2.19.+'
 	
-	compile 'com.newrelic.agent.java:newrelic-api:3.37.0'
+	compile 'com.newrelic.agent.java:newrelic-api:3.+'
 }
 
 task copyDeps(type: Copy) {
