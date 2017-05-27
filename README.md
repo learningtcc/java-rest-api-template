@@ -37,5 +37,15 @@ Docker | TODO | TODO
 - Runs on port 8890 by default - see `com.travelstart.api.Boot`
 - Uses CPU Core * 2 workers - see `com.travelstart.api.Boot`
 
+## Example endpoints:
+- `/api/ping.json` - POST/GET that returns a fixed string response
+- `/say/hello/{message}` - GET with a parameter called `message`
+- `/xxx/yyy` 
+
+## Docker support
+TODO
+
 ## Swagger support:
 `docker create --rm --name swagger-rest-template -p 8081:8080 -e API_URL=http://localhost:8890/api-doc/swagger.json swaggerapi/swagger-ui:v2.2.9`
+
+goto: `http://localhost:8081/` and enter `http://localhost:8890/api-doc/swagger.json` in the box
