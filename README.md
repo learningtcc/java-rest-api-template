@@ -23,7 +23,7 @@ A nice, simple REST API template written in Java using [Camel](http://camel.apac
 
 You will need [gradle](https://gradle.org/) to build (and "deploy" [optional] ). 
 
-Mode | How | How in debug?
+Mode | How | How (in debug)
 --- | --- | ---
 Development option 1| `gradle run` | `gradle run --debug-jvm`
 Development option 2| run `com.travelstart.api.Boot` from IDE | run `com.travelstart.api.Boot` in debug mode in IDE
