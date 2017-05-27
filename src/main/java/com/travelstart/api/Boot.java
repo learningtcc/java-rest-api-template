@@ -18,6 +18,11 @@ import org.springframework.context.annotation.Configuration;
 public class Boot {
     private Logger log = LoggerFactory.getLogger(Boot.class);
 
+    public static int PORT = new Integer(System.getProperty("server.port", "8890"));
+
+    public static int WORKER_COUNT = new Integer(
+            System.getProperty("server.workers", "" + (Runtime.getRuntime().availableProcessors() * 2)));
+
     @PostConstruct
     public void init() {
         log.info("start.");
@@ -32,9 +37,9 @@ public class Boot {
                 new NettySharedHttpServerBootstrapConfiguration();
 
         config.setHost("0.0.0.0");
-        config.setPort(8890);
+        config.setPort(PORT);
         config.setCompression(true);
-        config.setWorkerCount(Runtime.getRuntime().availableProcessors() * 2);
+        config.setWorkerCount(WORKER_COUNT);
         return config;
     }
 

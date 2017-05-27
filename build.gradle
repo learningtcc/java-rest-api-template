@@ -31,12 +31,13 @@ dependencies {
     compile logging
     
 	// camel libs
-	compile 'org.apache.camel:camel-core:2.19.+'
-	compile 'org.apache.camel:camel-spring:2.19.+'
-	compile 'org.apache.camel:camel-netty4-http:2.19.+'
-	compile 'org.apache.camel:camel-jackson:2.19.+'
+	compile 'org.apache.camel:camel-core:2.19.0'
+	compile 'org.apache.camel:camel-spring:2.19.0'
+	compile 'org.apache.camel:camel-netty4-http:2.19.0'
+	compile 'org.apache.camel:camel-jackson:2.19.0'
+	compile 'org.apache.camel:camel-swagger-java:2.19.0'
 	
-	compile 'com.newrelic.agent.java:newrelic-api:3.+'
+	compile 'com.newrelic.agent.java:newrelic-api:3.39.0'
 }
 
 task copyDeps(type: Copy) {
@@ -44,8 +45,8 @@ task copyDeps(type: Copy) {
     from configurations.runtime
 }
 
-applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8"]
-// to enable newrelic: applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8", "-javaagent:newrelic/newrelic.jar"]
+applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8", "-Djava.awt.headless=true"]
+// to enable newrelic: applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8", "-Djava.awt.headless=true", "-javaagent:newrelic/newrelic.jar"]
 
 mainClassName = "com.travelstart.api.Boot"
 
