@@ -16,7 +16,7 @@ public class SayHandler {
 
     @Handler
     @Trace
-    public Object handle(@Body Object body, @Header("q") String q) throws InterruptedException {
+    public Object handle(@Body Object body, @Header("message") String q) throws InterruptedException {
         Message m = new Message();
         m.setMsg("hello " + (q == null ? body.toString() : q));
         log.info("hello: \"{}\"", q);

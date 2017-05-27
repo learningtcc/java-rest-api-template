@@ -12,6 +12,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonDataFormat;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.apache.camel.model.rest.RestParamType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +44,12 @@ public class RestRoutes extends RouteBuilder {
         restConfiguration("netty4-http")
             .bindingMode(RestBindingMode.json)
             .endpointProperty("nettySharedHttpServer", "#sharedNettyHttpServer")
+            .enableCORS(true)
+            .apiContextPath("/api-doc")
+                .apiProperty("api.title", "REST Template API").apiProperty("api.version", "1.0")
+                // and enable CORS
+                .apiProperty("cors", "true")
+                .apiProperty("host", "localhost:" + Boot.PORT)
         ;
 
         // log requests
@@ -76,9 +83,11 @@ public class RestRoutes extends RouteBuilder {
             .produces("application/json")
             .bindingMode(RestBindingMode.off)
             .get("/ping.json")
+                .description("Checks if the API is healthy")
                 .route().transform(constant("{\"ok\":true}")).routeId("ping-get-route")
             .endRest()
             .post("/ping.json")
+                .description("Checks if the API is healthy")
                 .route().transform(constant("{\"ok\":true}"))
             .endRest()
             .head("/ping.json")
@@ -101,8 +110,11 @@ public class RestRoutes extends RouteBuilder {
         ;
 
         rest().path("/say")
-            .get("/hello")
+            .get("/hello/{message}")
                 .produces("application/json")
+                .param()
+                    .name("message").description("message to be sent").type(RestParamType.path).dataType("string")
+                .endParam()
                 .route().bean(sayHandler)
             .endRest()
             .post("/hello")
