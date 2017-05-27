@@ -1,7 +1,8 @@
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'application'
-
 apply plugin: 'java'
+apply plugin: 'jacoco'
     
 compileJava.options.encoding = 'UTF-8'
     
@@ -36,6 +37,9 @@ dependencies {
 	compile 'org.apache.camel:camel-netty4-http:2.19.0'
 	compile 'org.apache.camel:camel-jackson:2.19.0'
 	compile 'org.apache.camel:camel-swagger-java:2.19.0'
+	
+	testCompile 'org.springframework:spring-test:4.3.8.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 	
 	compile 'com.newrelic.agent.java:newrelic-api:3.39.0'
 }
