@@ -34,8 +34,8 @@ Docker | TODO | TODO
 - REST Routes are defined in `com.travelstart.api.RestRoutes`
 - Errors are handled in `com.travelstart.api.handler.ErrorHandler`
 - Request/Response content handler for logging is in `com.travelstart.api.handler.LoggingHandler`
-- Runs on port 8890 by default - see `com.travelstart.api.Boot`
-- Uses CPU Core * 2 workers - see `com.travelstart.api.Boot`
+- Runs on port 8890 by default - see `com.travelstart.api.Boot.PORT`
+- Uses CPU Core * 2 workers - see `com.travelstart.api.Boot.WORKER_COUNT`
 
 ## IDE Support
 - Eclipse: `gradle eclipse`
