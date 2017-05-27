@@ -19,7 +19,7 @@ REST API Template (Java+Netty+Camel+Swagger)
 
 A nice, simple REST API template written in Java using [Camel](http://camel.apache.org/) with [Netty](https://github.com/netty/netty) which includs an ErrorHandler, [NewRelic integration](https://newrelic.com/) and a few sample requests. Swagger support included as well.
 
-## How do you build it ?
+## How do you build / run / develop it ?
 
 You will need [gradle](https://gradle.org/) to build (and "deploy" [optional] ). 
 
