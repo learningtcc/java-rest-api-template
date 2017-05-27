@@ -29,7 +29,7 @@ Mode | How | How in debug?
 --- | --- | ---
 Development option 1| `gradle run` | `gradle run --debug-jvm`
 Development option 2| run `com.travelstart.api.Boot` from IDE | run `com.travelstart.api.Boot` in debug mode in IDE
-Externally | `gradle installDist`, start script in `build/install/java-rest-template/bin/java-rest-template` | N/A
+Externally | `gradle installDist`, run script: `build/install/java-rest-template/bin/java-rest-template` | N/A
 Docker | TODO | TODO
 
 ## Things to know
