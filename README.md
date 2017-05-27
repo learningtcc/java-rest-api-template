@@ -37,6 +37,11 @@ Docker | TODO | TODO
 - Runs on port 8890 by default - see `com.travelstart.api.Boot`
 - Uses CPU Core * 2 workers - see `com.travelstart.api.Boot`
 
+## IDE Support
+- Eclipse: `gradle eclipse`
+- IntelliJ IDEA: `gradle idea`
+- NetBeans: TODO
+
 ## Example endpoints:
 - `/api/ping.json` - POST/GET that returns a fixed string response
 - `/say/hello/{message}` - GET with a parameter called `message`
