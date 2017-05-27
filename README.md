@@ -54,3 +54,8 @@ TODO
 `docker create --rm --name swagger-rest-template -p 8081:8080 -e API_URL=http://localhost:8890/api-doc/swagger.json swaggerapi/swagger-ui:v2.2.9`
 
 goto: `http://localhost:8081/` and enter `http://localhost:8890/api-doc/swagger.json` in the box
+
+## Unit Testing
+`gradle test jacocoTestReport`
+
+reports at: java-rest-api-template/build/reports/jacoco/test/html/index.html
