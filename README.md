@@ -18,7 +18,7 @@ A nice, simple REST API template written in Java using [Camel](http://camel.apac
 
 ## How do you build it ?
 
-You will need [gradle](https://gradle.org/) build (and "deploy"). 
+You will need [gradle](https://gradle.org/) to build (and "deploy" [optional] ). 
 
 Mode | How | How in debug?
 --- | --- | ---
