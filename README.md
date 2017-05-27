@@ -40,7 +40,7 @@ Docker | TODO | TODO
 ## IDE Support
 - Eclipse: `gradle eclipse`
 - IntelliJ IDEA: `gradle idea`
-- NetBeans: TODO
+- NetBeans: use the gradle plugin
 
 ## Example endpoints:
 - `/api/ping.json` - POST/GET that returns a fixed string response
