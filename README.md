@@ -58,7 +58,7 @@ goto: `http://localhost:8081/` and enter `http://localhost:8890/api-doc/swagger.
 ## Unit Testing
 `gradle test jacocoTestReport`
 
-reports at: 
-- java-rest-api-template/build/reports/jacoco/test/html/index.html
-- java-rest-api-template/build/reports/tests/test/index.html
+test result reports at: 
+- code coverage: java-rest-api-template/build/reports/jacoco/test/html/index.html
+- test summary: java-rest-api-template/build/reports/tests/test/index.html
 
