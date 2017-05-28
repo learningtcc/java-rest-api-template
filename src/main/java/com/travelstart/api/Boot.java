@@ -23,6 +23,8 @@ public class Boot {
     public static int WORKER_COUNT = new Integer(
             System.getProperty("server.workers", "" + (Runtime.getRuntime().availableProcessors() * 2)));
 
+    public static int MAX_CONTENT_LENGTH = new Integer(System.getProperty("server.max-content-length", "" + (1024 * 1024)));
+
     @Bean("configuration")
     public NettySharedHttpServerBootstrapConfiguration nettyConfig() {
         NettySharedHttpServerBootstrapConfiguration config =
@@ -32,6 +34,7 @@ public class Boot {
         config.setPort(PORT);
         config.setCompression(true);
         config.setWorkerCount(WORKER_COUNT);
+        config.setChunkedMaxContentLength(MAX_CONTENT_LENGTH);
         return config;
     }
 
