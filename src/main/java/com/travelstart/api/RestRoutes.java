@@ -47,11 +47,13 @@ public class RestRoutes extends RouteBuilder {
             .bindingMode(RestBindingMode.json)
             .endpointProperty("nettySharedHttpServer", "#sharedNettyHttpServer")
             .enableCORS(true)
+            
+            // swagger docs
             .apiContextPath("/api-doc")
                 .apiProperty("api.title", "REST Template API").apiProperty("api.version", "1.0")
                 // and enable CORS
                 .apiProperty("cors", "true")
-                .apiProperty("host", "localhost:" + Boot.PORT)
+                .apiProperty("host", Boot.HOST + ":" + Boot.PORT)
         ;
 
         // log requests

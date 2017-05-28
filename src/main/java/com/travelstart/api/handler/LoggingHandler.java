@@ -21,9 +21,9 @@ public class LoggingHandler {
     }
 
     public void logResponse(@Header("CamelHttpUri") String uri, Exchange exchange) throws IOException {
-        log.info("URI:{}", uri);
         final Message in = exchange.getIn();
         String request = in.getBody(String.class);
+        log.info("URI:{}", uri);
         log.info("response content:\n{}\n", request);
     }
 }
