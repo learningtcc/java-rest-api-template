@@ -1,9 +1,9 @@
 package com.travelstart.api.handler;
 
 import com.newrelic.api.agent.NewRelic;
+import com.travelstart.api.model.ErrorResponse;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.camel.Exchange;
@@ -26,15 +26,15 @@ public class ErrorHandler {
         NewRelic.noticeError(ex);
         log.error("Error:", ex);
 
-        Map<String, Object> res = new LinkedHashMap<>();
-        res.put("exception", ExceptionUtils.getMessage(ex));
-        res.put("exception_stack", ExceptionUtils.getStackTrace(ex));
+        ErrorResponse res = new ErrorResponse();
+        res.setException(ExceptionUtils.getMessage(ex));
+        res.setExceptionStack(ExceptionUtils.getStackTrace(ex));
 
         final Map<String, String> outHeaders = new HashMap<String, String>();
         for (Map.Entry<String, Object> entry : exchange.getIn().getHeaders().entrySet()) {
             outHeaders.put(entry.getKey(), entry.getValue() == null ? "<NULL>" : entry.getValue().toString());
         }
-        res.put("headers", outHeaders);
+        res.setHeaders(outHeaders);
         headers.put(Exchange.HTTP_RESPONSE_CODE, 500);
         headers.put(Exchange.CONTENT_TYPE, "application/json");
         return res;

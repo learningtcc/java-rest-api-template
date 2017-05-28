@@ -6,6 +6,8 @@ import com.travelstart.api.handler.FailHandler;
 import com.travelstart.api.handler.LoggingHandler;
 import com.travelstart.api.handler.NewRelicHandler;
 import com.travelstart.api.handler.SayHandler;
+import com.travelstart.api.model.ErrorResponse;
+import com.travelstart.api.model.Message;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
@@ -82,17 +84,29 @@ public class RestRoutes extends RouteBuilder {
         rest().path("/api")
             .produces("application/json")
             .bindingMode(RestBindingMode.off)
+            
             .get("/ping.json")
                 .description("Checks if the API is healthy")
+                .responseMessage()
+                    .code(200)
+                        .message("If API is alive and well")
+                .endResponseMessage()
+                .responseMessage()
+                    .code("!= 200")
+                    .message("API not ok")
+                .endResponseMessage()
                 .route().transform(constant("{\"ok\":true}")).routeId("ping-get-route")
             .endRest()
+
             .post("/ping.json")
                 .description("Checks if the API is healthy")
                 .route().transform(constant("{\"ok\":true}"))
             .endRest()
+            
             .head("/ping.json")
                 .route().transform(constant("{\"ok\":true}"))
             .endRest()
+            
             .setId("pingRoute")
         ;
         
@@ -110,15 +124,19 @@ public class RestRoutes extends RouteBuilder {
         ;
 
         rest().path("/say")
-            .get("/hello/{message}")
+            .get("/hello")
                 .produces("application/json")
                 .param()
-                    .name("message").description("message to be sent").type(RestParamType.path).dataType("string")
+                    .name("message").description("message to be sent").type(RestParamType.query).dataType("string").required(true)
                 .endParam()
-                .route().bean(sayHandler)
-            .endRest()
-            .post("/hello")
-                .produces("application/json")
+                .responseMessage()
+                    .code(200).message("successful")
+                    .responseModel(Message.class)
+                .endResponseMessage()
+                .responseMessage()
+                    .code("!= 200").message("failure")
+                    .responseModel(ErrorResponse.class)
+                .endResponseMessage()
                 .route().bean(sayHandler)
             .endRest()
             .setId("sayRoute");

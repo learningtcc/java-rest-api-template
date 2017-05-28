@@ -3,6 +3,9 @@ package com.travelstart.api.handler;
 import com.newrelic.api.agent.Trace;
 import com.travelstart.api.model.Message;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import org.apache.camel.Body;
 import org.apache.camel.Handler;
 import org.apache.camel.Header;
@@ -16,10 +19,10 @@ public class SayHandler {
 
     @Handler
     @Trace
-    public Object handle(@Body Object body, @Header("message") String q) throws InterruptedException {
+    public Object handle(@Body Object body, @Header("message") String q) throws InterruptedException, UnsupportedEncodingException {
         Message m = new Message();
-        m.setMsg("hello " + (q == null ? body.toString() : q));
-        log.info("hello: \"{}\"", q);
+        m.setMsg("hello " + URLDecoder.decode(q, "UTF-8"));
+        log.info("hello: \"{}\"", m.getMsg());
         return m;
     }
 }
