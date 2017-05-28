@@ -1,23 +1,25 @@
 package com.travelstart.api.handler;
 
+import java.io.UnsupportedEncodingException;
+
 import org.junit.Test;
 
 public class SayHandlerTest {
 
     @Test
-    public void test1() throws InterruptedException {
+    public void test1() throws InterruptedException, UnsupportedEncodingException {
         SayHandler handler = new SayHandler();
         handler.handle("body", "message test");
     }
 
     @Test
-    public void test2() throws InterruptedException {
+    public void test2() throws InterruptedException, UnsupportedEncodingException {
         SayHandler handler = new SayHandler();
         handler.handle(null, "message test");
     }
 
     @Test
-    public void test3() throws InterruptedException {
+    public void test3() throws InterruptedException, UnsupportedEncodingException {
         SayHandler handler = new SayHandler();
         handler.handle("body", null);
     }
