@@ -1,6 +1,5 @@
 package com.travelstart.api.handler;
 
-import com.newrelic.api.agent.Trace;
 import com.travelstart.api.model.Message;
 
 import java.io.UnsupportedEncodingException;
@@ -18,7 +17,6 @@ public class SayHandler {
     private Logger log = LoggerFactory.getLogger(SayHandler.class);
 
     @Handler
-    @Trace
     public Object handle(@Body Object body, @Header("message") String q) throws InterruptedException, UnsupportedEncodingException {
         Message m = new Message();
         m.setMsg("hello " + URLDecoder.decode(q, "UTF-8"));

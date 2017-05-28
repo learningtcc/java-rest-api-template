@@ -3,7 +3,10 @@ package com.travelstart.api.handler;
 import java.io.UnsupportedEncodingException;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class SayHandlerTest {
 
     @Test
@@ -16,12 +19,6 @@ public class SayHandlerTest {
     public void test2() throws InterruptedException, UnsupportedEncodingException {
         SayHandler handler = new SayHandler();
         handler.handle(null, "message test");
-    }
-
-    @Test
-    public void test3() throws InterruptedException, UnsupportedEncodingException {
-        SayHandler handler = new SayHandler();
-        handler.handle("body", null);
     }
 
 }

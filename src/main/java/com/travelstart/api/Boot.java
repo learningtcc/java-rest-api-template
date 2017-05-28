@@ -1,8 +1,5 @@
 package com.travelstart.api;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
 import org.apache.camel.component.netty4.http.DefaultNettySharedHttpServer;
 import org.apache.camel.component.netty4.http.NettySharedHttpServerBootstrapConfiguration;
 import org.apache.camel.spring.CamelContextFactoryBean;
@@ -20,23 +17,18 @@ public class Boot {
 
     public static int PORT = new Integer(System.getProperty("server.port", "8890"));
 
+    // bind address
+    public static String HOST = System.getProperty("server.host", "localhost");
+
     public static int WORKER_COUNT = new Integer(
             System.getProperty("server.workers", "" + (Runtime.getRuntime().availableProcessors() * 2)));
-
-    @PostConstruct
-    public void init() {
-        log.info("start.");
-    }
-
-    @PreDestroy
-    public void down() {}
 
     @Bean("configuration")
     public NettySharedHttpServerBootstrapConfiguration nettyConfig() {
         NettySharedHttpServerBootstrapConfiguration config =
                 new NettySharedHttpServerBootstrapConfiguration();
 
-        config.setHost("0.0.0.0");
+        config.setHost(HOST);
         config.setPort(PORT);
         config.setCompression(true);
         config.setWorkerCount(WORKER_COUNT);
