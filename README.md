@@ -34,8 +34,8 @@ Docker | TODO | TODO
 - REST Routes are defined in [com.travelstart.api.RestRoutes](src/main/java/com/travelstart/api/RestRoutes.java)
 - Errors are handled in [com.travelstart.api.handler.ErrorHandler](src/main/java/com/travelstart/api/handler/ErrorHandler.java)
 - Request/Response content handler for logging is in [com.travelstart.api.handler.LoggingHandler](src/main/java/com/travelstart/api/handler/LoggingHandler.java)
-- Runs on port 8890 by default - see [com.travelstart.api.Boot.PORT](src/main/java/com/travelstart/api/Boot.java)
-- Uses CPU Core * 2 workers - see [com.travelstart.api.Boot.WORKER_COUNT](src/main/java/com/travelstart/api/Boot.java)
+- Runs on port 8890 by default - to customise, see [com.travelstart.api.Boot.PORT](src/main/java/com/travelstart/api/Boot.java)
+- Uses _CPU Cores x 2_ workers - see [com.travelstart.api.Boot.WORKER_COUNT](src/main/java/com/travelstart/api/Boot.java) to customise
 
 ## IDE Support
 - Eclipse: `gradle eclipse`
@@ -51,9 +51,12 @@ Docker | TODO | TODO
 TODO
 
 ## Swagger support:
-`docker create --rm --name swagger-rest-template -p 8081:8080 -e API_URL=http://localhost:8890/api-doc/swagger.json swaggerapi/swagger-ui:v2.2.9`
-
-goto: http://localhost:8081/ and enter http://localhost:8890/api-doc/swagger.json in the box
+### Create:
+- `docker create --rm --name swagger-rest-template -p 8081:8080 -e API_URL=http://localhost:8890/api-doc/swagger.json swaggerapi/swagger-ui:v2.2.9`
+### Start it:
+- `docker start swagger-rest-template`
+### Use it:
+- goto: http://localhost:8081/ and enter http://localhost:8890/api-doc/swagger.json in the box
 
 ## Unit Testing
 `gradle test jacocoTestReport`
