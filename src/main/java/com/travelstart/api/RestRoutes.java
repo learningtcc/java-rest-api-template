@@ -47,7 +47,9 @@ public class RestRoutes extends RouteBuilder {
             .bindingMode(RestBindingMode.json)
             .endpointProperty("nettySharedHttpServer", "#sharedNettyHttpServer")
             .enableCORS(true)
-            
+            .host(Boot.HOST)
+            .port(Boot.PORT)
+
             // swagger docs
             .apiContextPath("/api-doc")
                 .apiProperty("api.title", "REST Template API").apiProperty("api.version", "1.0")
@@ -68,12 +70,13 @@ public class RestRoutes extends RouteBuilder {
             .bean(loggingHandler, "logResponse")
         ;
 
+
+        
+        // error handler
         JsonDataFormat errorJson = new JsonDataFormat(JsonLibrary.Jackson);
         errorJson.setPrettyPrint(true);
         errorJson.setInclude(JsonInclude.Include.NON_NULL.toString());
 
-        
-        // error handler
         onException(Exception.class)
             .bean(errorHandler)
             .handled(true)
