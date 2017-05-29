@@ -65,7 +65,8 @@ test result reports at:
 - code coverage: java-rest-api-template/build/reports/jacoco/test/html/index.html
 - test summary: java-rest-api-template/build/reports/tests/test/index.html
 
-### Customising the Server
+
+## Customising the Server
 
 The following system properties can set to customise the server:
 
