@@ -65,3 +65,14 @@ test result reports at:
 - code coverage: java-rest-api-template/build/reports/jacoco/test/html/index.html
 - test summary: java-rest-api-template/build/reports/tests/test/index.html
 
+### Customising the Server
+
+## Customising the server:
+The following system properties can set to customise the server:
+
+System Property | What
+--- | ---
+`server.host`| The binding address - default is `localhost` 
+`server.port`| The port the server listens on - default is `8890`
+`server.workers`| The number of works (threads) available for requests - default is CPU Cores x 2
+`server.max-content-length`| The maximum upload size - default is 1MB
