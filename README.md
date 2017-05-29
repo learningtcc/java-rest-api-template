@@ -67,7 +67,6 @@ test result reports at:
 
 ### Customising the Server
 
-## Customising the server:
 The following system properties can set to customise the server:
 
 System Property | What
