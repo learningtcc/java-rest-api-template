@@ -1,6 +1,5 @@
 package com.travelstart.api.handler;
 
-import com.newrelic.api.agent.NewRelic;
 import com.travelstart.api.model.ErrorResponse;
 
 import java.util.HashMap;
@@ -23,7 +22,6 @@ public class ErrorHandler {
     @Handler
     public Object handleError(Exception ex, Exchange exchange, @Headers Map<String, Object> headers) {
 
-        NewRelic.noticeError(ex);
         log.error("Error:", ex);
 
         ErrorResponse res = new ErrorResponse();
