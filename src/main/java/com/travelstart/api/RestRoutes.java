@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.travelstart.api.handler.ErrorHandler;
 import com.travelstart.api.handler.FailHandler;
 import com.travelstart.api.handler.LoggingHandler;
-import com.travelstart.api.handler.NewRelicHandler;
 import com.travelstart.api.handler.SayHandler;
 import com.travelstart.api.model.ErrorResponse;
 import com.travelstart.api.model.Message;
@@ -23,9 +22,6 @@ public class RestRoutes extends RouteBuilder {
 
     @Autowired
     private SayHandler sayHandler;
-
-    @Autowired
-    private NewRelicHandler newRelicHandler;
 
     @Autowired
     private LoggingHandler loggingHandler;
@@ -62,7 +58,6 @@ public class RestRoutes extends RouteBuilder {
         interceptFrom("*")
             .to("log:headers?level=INFO&showHeaders=true&multiline=true")
             .bean(loggingHandler, "logRequest")
-            .bean(newRelicHandler)
         ;
 
         // log responses

@@ -17,7 +17,7 @@
 REST API Template (Java+Netty+Camel+Swagger)
 =====================================
 
-A nice, simple REST API template written in Java using [Camel](http://camel.apache.org/) with [Netty](https://github.com/netty/netty) which includs an ErrorHandler, [NewRelic integration](https://newrelic.com/) and a few sample requests. [Swagger](//swagger.io) support included as well.
+A nice, simple REST API template written in Java using [Camel](http://camel.apache.org/) with [Netty](https://github.com/netty/netty) which includs an ErrorHandler and a few sample requests. [Swagger](//swagger.io) support included as well.
 
 ## How do you build / run / develop it ?
 
@@ -28,7 +28,6 @@ Mode | How | How (in debug)
 Development option 1| `gradle run` | `gradle run --debug-jvm`
 Development option 2| run [com.travelstart.api.Boot](src/main/java/com/travelstart/api/Boot.java) from IDE | run [com.travelstart.api.Boot](src/main/java/com/travelstart/api/Boot.java) in debug mode in IDE
 Externally | `gradle installDist`, run script: `build/install/java-rest-template/bin/java-rest-template` | N/A
-Docker | TODO | TODO
 
 ## Things to know
 - REST Routes are defined in [com.travelstart.api.RestRoutes](src/main/java/com/travelstart/api/RestRoutes.java)
@@ -46,9 +45,6 @@ Docker | TODO | TODO
 - `/api/ping.json` - POST/GET that returns a fixed string response
 - `/say/hello/{message}` - GET with a parameter called `message`
 - `/xxx/yyy` 
-
-## Docker support
-TODO
 
 ## Swagger support:
 ### Create:
