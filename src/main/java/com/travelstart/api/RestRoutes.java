@@ -43,6 +43,8 @@ public class RestRoutes extends RouteBuilder {
             .bindingMode(RestBindingMode.json)
             .endpointProperty("nettySharedHttpServer", "#sharedNettyHttpServer")
             .enableCORS(true)
+            //If you want to use your own headers, please add them to this list
+            .corsHeaderProperty("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers")
             .host(Boot.HOST)
             .port(Boot.PORT)
 
