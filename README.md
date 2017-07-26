@@ -42,12 +42,13 @@ Externally | `gradle installDist`, run script: `build/install/java-rest-template
 - NetBeans: use the gradle plugin
 
 ## Example endpoints:
-- `/api/ping.json` - POST/GET that returns a fixed string response
-- `/say/hello/{message}` - GET with a parameter called `message`
-- `/api/fail` - GET request which fails 
+- `/api/ping` - POST/GET that returns a fixed string response
+- `/booking` - PUT to create a booking - returns the ID in the response
+- `/booking/{id}` - POST to update a booking given the ID
+- `/booking/{id}` - GET to retrieve a booking given the ID
 
 ## Swagger support:
-### Create:
+### Create (once-off):
 - `docker create --rm --name swagger-rest-template -p 8081:8080 -e API_URL=http://localhost:8890/api-doc/swagger.json swaggerapi/swagger-ui:v2.2.9`
 ### Start it:
 - `docker start swagger-rest-template`
