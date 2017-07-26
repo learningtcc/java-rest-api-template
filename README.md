@@ -44,7 +44,7 @@ Externally | `gradle installDist`, run script: `build/install/java-rest-template
 ## Example endpoints:
 - `/api/ping.json` - POST/GET that returns a fixed string response
 - `/say/hello/{message}` - GET with a parameter called `message`
-- `/xxx/yyy` 
+- `/api/fail` - GET request which fails 
 
 ## Swagger support:
 ### Create:
