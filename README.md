@@ -29,7 +29,7 @@ Mode | How | How (in debug)
 --- | --- | ---
 Development option 1| `gradle run` | `gradle run --debug-jvm`
 Development option 2| run [com.travelstart.api.Boot](src/main/java/com/travelstart/api/Boot.java) from IDE | run [com.travelstart.api.Boot](src/main/java/com/travelstart/api/Boot.java) in debug mode in IDE
-Externally | `gradle installDist`, run script: `build/install/java-rest-template/bin/java-rest-template` | N/A
+Externally | `gradle installDist`, run script: `build/install/java-rest-api-template/bin/java-rest-api-template` | N/A
 
 ## Things to know
 - REST Routes are defined in [com.travelstart.api.RestRoutes](src/main/java/com/travelstart/api/RestRoutes.java)
