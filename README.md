@@ -43,9 +43,9 @@ Externally | `gradle installDist`, run script: `build/install/java-rest-template
 
 ## Example endpoints:
 - `/api/ping` - POST/GET that returns a fixed string response
-- `/booking` - PUT to create a booking - returns the ID in the response
-- `/booking/{id}` - POST to update a booking given the ID
-- `/booking/{id}` - GET to retrieve a booking given the ID
+- `/api/booking` - PUT to create a booking - returns the ID in the response
+- `/api/booking/{id}` - POST to update a booking given the ID
+- `/api/booking/{id}` - GET to retrieve a booking given the ID
 
 ## Swagger support:
 ### Create (once-off):
