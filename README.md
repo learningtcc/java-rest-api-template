@@ -64,7 +64,7 @@ test result reports at:
 
 ## Customising the Server
 
-The following system properties can set to customise the server:
+The following system properties can be set to customise the server:
 
 System Property | What
 --- | ---

@@ -1,12 +1,10 @@
 package com.travelstart.api;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.travelstart.api.handler.BookingHandler;
 import com.travelstart.api.handler.ErrorHandler;
-import com.travelstart.api.handler.FailHandler;
 import com.travelstart.api.handler.LoggingHandler;
-import com.travelstart.api.handler.SayHandler;
-import com.travelstart.api.model.ErrorResponse;
-import com.travelstart.api.model.Message;
+import com.travelstart.api.model.Booking;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
@@ -21,19 +19,16 @@ import org.springframework.stereotype.Component;
 public class RestRoutes extends RouteBuilder {
 
     @Autowired
-    private SayHandler sayHandler;
-
-    @Autowired
     private LoggingHandler loggingHandler;
-
-    @Autowired
-    private FailHandler failHandler;
 
     @Autowired
     private ErrorHandler errorHandler;
 
     @Autowired
     private CamelContext context;
+
+    @Autowired
+    private BookingHandler bookHandler;
 
     @Override
     public void configure() throws Exception {
@@ -85,7 +80,7 @@ public class RestRoutes extends RouteBuilder {
             .produces("application/json")
             .bindingMode(RestBindingMode.off)
             
-            .get("/ping.json")
+            .get("/ping")
                 .description("Checks if the API is healthy")
                 .responseMessage()
                     .code(200)
@@ -98,49 +93,55 @@ public class RestRoutes extends RouteBuilder {
                 .route().transform(constant("{\"ok\":true}")).routeId("ping-get-route")
             .endRest()
 
-            .post("/ping.json")
-                .description("Checks if the API is healthy")
-                .route().transform(constant("{\"ok\":true}"))
-            .endRest()
-            
-            .head("/ping.json")
-                .route().transform(constant("{\"ok\":true}"))
-            .endRest()
-            
-            .setId("pingRoute")
-        ;
-        
-        rest().path("/api")
-            .get("/fail")
+            // booking put
+            .put("/booking")
+                .bindingMode(RestBindingMode.json)
                 .produces("application/json")
-                .route().bean(failHandler, "letItFail")
+                .description("create a booking")
+                .type(Booking.class)
+                .outType(String.class)
+                .responseMessage()
+                    .code(200)
+                        .message("if successful")
+                    .responseModel(String.class)
+                .endResponseMessage()
+                .route().bean(bookHandler, "create")
             .endRest()
-            .head("/fail")
+             
+            .get("/booking/{id}")
+                .bindingMode(RestBindingMode.json)
                 .produces("application/json")
-                .route().bean(failHandler, "letItFail")
-            .endRest()
-            .setId("failRoute")
-            
-        ;
-
-        rest().path("/say")
-            .get("/hello")
-                .produces("application/json")
+                .description("retrieves a booking given the ID")
+                .outType(Booking.class)
                 .param()
-                    .name("message").description("message to be sent").type(RestParamType.query).dataType("string").required(true)
+                    .name("id").type(RestParamType.path).dataType("integer").required(true)
                 .endParam()
                 .responseMessage()
-                    .code(200).message("successful")
-                    .responseModel(Message.class)
+                    .code(200)
+                        .message("booking retrieved")
+                    .responseModel(Booking.class)
                 .endResponseMessage()
-                .responseMessage()
-                    .code("!= 200").message("failure")
-                    .responseModel(ErrorResponse.class)
-                .endResponseMessage()
-                .route().bean(sayHandler)
+                .route().bean(bookHandler, "retrieve")
             .endRest()
-            .setId("sayRoute");
-        ;
+
+            .post("/booking/{id}")
+                .bindingMode(RestBindingMode.json)
+                .produces("application/json")
+                .description("update a booking given the id")
+                .type(Booking.class)
+                .outType(Integer.class)
+                .param()
+                    .name("id").type(RestParamType.path).dataType("integer").required(true)
+                .endParam()
+                .responseMessage()
+                    .code(200)
+                        .message("if successful, returns the ID of the booking")
+                    .responseModel(Integer.class)
+                .endResponseMessage()
+                .route().bean(bookHandler, "update")
+            .endRest()
+            ;
+        
 
         // @formatter:on   
     }
