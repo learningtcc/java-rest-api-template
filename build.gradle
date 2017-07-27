@@ -49,7 +49,6 @@ task copyDeps(type: Copy) {
 }
 
 applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8", "-Djava.awt.headless=true"]
-// to enable newrelic: applicationDefaultJvmArgs = ["-Dlog4j.debug", "-Dfile.encoding=UTF-8", "-Djava.awt.headless=true", "-javaagent:newrelic/newrelic.jar"]
 
 mainClassName = "com.travelstart.api.Boot"
 
